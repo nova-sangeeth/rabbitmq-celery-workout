@@ -4,8 +4,10 @@ connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-channel.queue_declare(queue='hello')
+channel.queue_declare(queue='db_backup_test_queue')
 
-channel.basic_publish(exchange='', routing_key='hello', body='DATABASE CHECK')
-print("Sending Message -->> 'CHECKING DB CONNECTION!'")
+channel.basic_publish(exchange='', routing_key='db_backup_test_queue', body='DATABASE CHECK')
+print("Sending Message -->> 'DB BACKUP!'")
+
+
 connection.close()
