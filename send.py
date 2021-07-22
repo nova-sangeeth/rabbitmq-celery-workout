@@ -1,7 +1,6 @@
 import pika
 
-connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='dev.screel.in'))
 channel = connection.channel()
 
 channel.queue_declare(queue='db_backup_test_queue')
