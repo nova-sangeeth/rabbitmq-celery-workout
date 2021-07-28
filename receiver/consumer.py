@@ -2,7 +2,7 @@ import pika
 import json
 import datetime
 
-from db_backup_methods import  backup_postgres_db
+from db_utils.db_backup_methods import  backup_postgres_db
 
 # connection = pika.BlockingConnection(pika.ConnectionParameters('dev.screel.in'))
 # # For local testing only

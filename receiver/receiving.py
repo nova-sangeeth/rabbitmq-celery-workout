@@ -1,6 +1,6 @@
 import pika, sys, os
 # from db_conn import connection_test
-from db_backup_methods import  backup_postgres_db
+from db_utils.db_backup_methods import  backup_postgres_db
 import datetime
 
 
