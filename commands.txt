@@ -11,3 +11,11 @@ pg_dump postgresql://postgres:postgres@db/app --data-only --exclude-table-data=a
 
 
 use cascade when deleting the tables.
+
+
+
+psql -U username -p 5432 -h 10.10.10.1 -d database < db.dump
+psql -U postgres -w postgres -p 5432 -h localhost -d app < ref_data_2021_07_30_13_23_28.sql
+
+pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname my-destination-database /tmp/db.dump
+
