@@ -70,7 +70,7 @@ def concat_sqlfiles(file_path):
         )
         output = process.communicate()[0]
         if int(process.returncode) != 0:
-            print('Command failed. Return code : {}'.format(process.returncode))
+            print('Concat failed. Return code : {}'.format(process.returncode))
 
         print('Successfully Completed')
     except:
