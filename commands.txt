@@ -42,7 +42,6 @@ pg_restore app_data_export.sql | \
        psql -h ${pgserver} -d ${dbname} -U ${pguser}    
 
 
-# celery_app = Celery("worker", broker="amqps://qhptgcur:UGzE08gwew-YlKRcvmbuH28UCHACkveU@puffin.rmq2.cloudamqp.com/qhptgcur")
 
 
 cat REFERENCE_DATA.sql|sed 's/^INSERT INTO/REPLACE INTO/'|mysql -u root -p database_name
