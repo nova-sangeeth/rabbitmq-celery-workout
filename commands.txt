@@ -18,4 +18,36 @@ psql -U username -p 5432 -h 10.10.10.1 -d database < db.dump
 psql -U postgres -w postgres -p 5432 -h localhost -d app < ref_data_2021_07_30_13_23_28.sql
 
 pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname my-destination-database /tmp/db.dump
+pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname postgresql://postgres:postgres@localhost/app ref_data.sql
+
+pg_dump postgresql://postgres:postgres@localhost/app --data-only  --table=public.candidate_types --column-inserts > testing-inserts.sql
+
+
+TRUNCATE TABLE [database_name.][schema_name.]table_name;
+pg_dump --column-inserts --data-only --table=<table> <database>
+pg_dump postgresql://postgres:postgres@localhost/app --data-only  --table=public.candidate_types --column-inserts > testing-inserts.sql
+
+psql -U postgres -p 5432 -h localhost -d app < ref_data.sql      
+
+
+
+pg_restore ${dumpfile} | \
+    sed -e "s/OWNER TO ${source_owner}/OWNER TO ${target_owner}/" \
+        -e "s/${source_owner}/${target_schema}/" | \
+       psql -h ${pgserver} -d ${dbname} -U ${pguser}    
+
+
+pg_restore app_data_export.sql | \
+    sed -e "s/${source_owner}/${target_schema}/" | \
+       psql -h ${pgserver} -d ${dbname} -U ${pguser}    
+
+
+# celery_app = Celery("worker", broker="amqps://qhptgcur:UGzE08gwew-YlKRcvmbuH28UCHACkveU@puffin.rmq2.cloudamqp.com/qhptgcur")
+
+
+cat REFERENCE_DATA.sql|sed 's/^INSERT INTO/REPLACE INTO/'|mysql -u root -p database_name
+
+
+cat REFERENCE_DATA.sql| sed 's/^INSERT INTO/REPLACE INTO/'|psql -U postgres --disable-triggers -p 5432 -h localhost -d app      
+
 
