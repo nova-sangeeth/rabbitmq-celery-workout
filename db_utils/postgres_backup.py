@@ -191,10 +191,7 @@ def restore_postgres_db(db_host, db, port, user, password, backup_file, verbose)
             process = subprocess.Popen(
                 ['pg_restore',
                  '--no-owner',
-                 '--dbname=postgresql://{}:{}@{}:{}/{}'.format(user,
-                                                               password,
-                                                               db_host,
-                                                               port, db),
+                 '--dbname=postgresql://{}:{}@{}:{}/{}'.format(user,password,db_host,port, db),
                  '-v',
                  backup_file],
                 stdout=subprocess.PIPE
