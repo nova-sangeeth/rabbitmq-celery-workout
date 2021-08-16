@@ -27,7 +27,7 @@ TRUNCATE TABLE [database_name.][schema_name.]table_name;
 pg_dump --column-inserts --data-only --table=<table> <database>
 pg_dump postgresql://postgres:postgres@localhost/app --data-only  --table=public.candidate_types --column-inserts > testing-inserts.sql
 
-psql -U postgres -p 5432 -h localhost -d app < ref_data.sql      
+psql -U postgres -p 5432 -h localhost -d app < reference_data_1.sql      
 
 
 
@@ -50,3 +50,4 @@ cat REFERENCE_DATA.sql|sed 's/^INSERT INTO/REPLACE INTO/'|mysql -u root -p datab
 cat REFERENCE_DATA.sql| sed 's/^INSERT INTO/REPLACE INTO/'|psql -U postgres --disable-triggers -p 5432 -h localhost -d app      
 
 
+subprocess.call(['psql --username=openerp --dbname=sf_template --no-password --command="select pg_terminate_backend(procpid) from pg_stat_activity where datname = \'sf_template\' and procpid <> pg_backend_pid()"'], env={'PGPASSWORD': 'mypassword'})
