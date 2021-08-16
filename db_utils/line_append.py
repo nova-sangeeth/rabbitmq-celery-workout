@@ -8,4 +8,4 @@ def insert(originalfile,string):
     os.rename('newfile.sql',originalfile)
 
 
-insert('ref_data_2.sql', 'SET session_replication_role to replica;')
+insert('ref_data_2.sql', 'SET session_replication_role to replica; DROP SCHEMA  IF EXISTS reference_data;')

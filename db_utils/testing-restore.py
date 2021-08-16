@@ -17,9 +17,8 @@ def restore_postgres_db(db_host, db, port, user, password, backup_file):
         print(user,password,db_host,port, db)
         process = subprocess.Popen(
             [
-                'pg_restore',
-                '--verbose',
-                '--clean',
+                'psql',
+                '-c',
                 '--dbname=postgresql://{}:{}@{}:{}/{}'.format(user, password, db_host, port, db),
                 backup_file
             ],
@@ -36,7 +35,7 @@ def restore_postgres_db(db_host, db, port, user, password, backup_file):
 
 def restore_reference_data():
     try:
-        backup_file_path = "dump.sql"
+        backup_file_path = "reference_data_1.sql"
         logger.debug('Temporary file path ==>' + backup_file_path)
     
     except Exception as e:
@@ -44,15 +43,15 @@ def restore_reference_data():
     
     try:
         restore_postgres_db(
-            db_host = 'db',
+            db_host = 'localhost',
             db = 'app', 
             port = 5432, 
             user = 'postgres', 
             password = 'postgres', 
             backup_file = backup_file_path
         )
-        os.remove(backup_file_path)
-        print('removing temp file.....')
+        # os.remove(backup_file_path)
+        # print('removing temp file.....')
         return 'DB restore done!!'
 
     except Exception as e:
@@ -60,19 +59,4 @@ def restore_reference_data():
             return 'DB restore failed!!'
 
 
-def concat_sqlfiles(file_path):
-    try:
-        process = subprocess.Popen(
-            [
-                        
-            ],
-            stdout=subprocess.PIPE
-        )
-        output = process.communicate()[0]
-        if int(process.returncode) != 0:
-            print('Concat failed. Return code : {}'.format(process.returncode))
-
-        print('Successfully Completed')
-    except:
-        print('Error Unable to concat')
-    return None
+restore_reference_data()
