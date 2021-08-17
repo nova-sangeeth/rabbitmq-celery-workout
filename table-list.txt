@@ -1,65 +1,69 @@
-# "--table=action_types",
-            # "--table=actions",
-            # "--table=benefit_types",
-            # "--table=candidate_levels",
-            # "--table=candidate_types",
-            # "--table=contact_types",
-            # "--table=country_info",
-            # "--table=currencies",
-            # "--table=customer_type",
-            # "--table=customer_user_types",
-            # "--table=display_types",
-            # "--table=display_data",
-            # "--table=districts",
-            # "--table=document_ext",
-            # "--table=document_owner",
-            # "--table=document_types",
-            # "--table=document_type_ext",
-            # "--table=gender",
-            # "--table=issue_authorities",
-            # "--table=issue_authority_candidate_type",
-            # "--table=issue_authority_qual",
-            # "--table=issue_authority_type",
-            # "--table=job_candidate_process",
-            # "--table=job_candidate_process_action",
-            # "--table=job_candidate_process_actions",
-            # "--table=language_proficiency",
-            # "--table=languages",
-            # "--table=locations",
-            # "--table=marital_status",
-            # "--table=non_medical_qual_type",
-            # "--table=non_medical_qual",
-            # "--table=organisation_types",
-            # "--table=pqr_header",
-            # "--table=pqr_detail",
-            # "--table=pqr_ahp_detail",
-            # "--table=qualification_classification",
-            # "--table=qualifications",
-            # "--table=reason_types",
-            # "--table=reasons",
-            # "--table=recruitment_types",
-            # "--table=region_countries",
-            # "--table=regions",
-            # "--table=role_types",
-            # "--table=skill_types",
-            # "--table=skills",
-            # "--table=special_interest",
-            # "--table=speciality",
-            # "--table=sub_speciality",
-            # "--table=speciality_types",
-            # "--table=speciality_sub_speciality_self_reference_types",
-            # "--table=speciality_sub_speciality_self_references",
-            # "--table=status",
-            # "--table=status_types",
-            # "--table=speciality_lookup",
-            # "--table=keyword_most_frequent_word",
-            # "--table=tabs",
-            # "--table=team_levels",
-            # "--table=titles",
-            # "--table=filters",
-            # "--table=entities",
-            # "--table=departments",
-            # "--table=divergents",
-            # "--table=customer_admin_types",
-            # "--table=job_detail_type",
-            # "--table=job_types",
+CREATE SCHEMA reference_data;
+
+ALTER TABLE public.action_types SET SCHEMA reference_data;
+ALTER TABLE public.actions SET SCHEMA reference_data;
+ALTER TABLE public.alert_types SET SCHEMA reference_data;
+ALTER TABLE public.benefit_types SET SCHEMA reference_data;
+ALTER TABLE public.candidate_levels SET SCHEMA reference_data;
+ALTER TABLE public.candidate_types SET SCHEMA reference_data;
+ALTER TABLE public.contact_types SET SCHEMA reference_data;
+ALTER TABLE public.country_info SET SCHEMA reference_data;
+ALTER TABLE public.currencies SET SCHEMA reference_data;
+ALTER TABLE public.customer_admin_types SET SCHEMA reference_data;
+ALTER TABLE public.customer_type SET SCHEMA reference_data;
+ALTER TABLE public.customer_user_types SET SCHEMA reference_data;
+ALTER TABLE public.departments SET SCHEMA reference_data;
+ALTER TABLE public.display_data SET SCHEMA reference_data;
+ALTER TABLE public.display_types SET SCHEMA reference_data;
+ALTER TABLE public.districts SET SCHEMA reference_data;
+ALTER TABLE public.divergents SET SCHEMA reference_data;
+ALTER TABLE public.document_ext SET SCHEMA reference_data;
+ALTER TABLE public.document_owner SET SCHEMA reference_data;
+ALTER TABLE public.document_type_ext SET SCHEMA reference_data;
+ALTER TABLE public.document_types SET SCHEMA reference_data;
+ALTER TABLE public.entities SET SCHEMA reference_data;
+ALTER TABLE public.filters SET SCHEMA reference_data;
+ALTER TABLE public.gender SET SCHEMA reference_data;
+ALTER TABLE public.issue_authorities SET SCHEMA reference_data;
+ALTER TABLE public.issue_authority_candidate_type SET SCHEMA reference_data;
+ALTER TABLE public.issue_authority_qual SET SCHEMA reference_data;
+ALTER TABLE public.issue_authority_type SET SCHEMA reference_data;
+ALTER TABLE public.job_candidate_process_action SET SCHEMA reference_data;
+ALTER TABLE public.job_candidate_process_actions SET SCHEMA reference_data;
+ALTER TABLE public.job_candidate_process SET SCHEMA reference_data;
+ALTER TABLE public.job_detail_type SET SCHEMA reference_data;
+ALTER TABLE public.job_types SET SCHEMA reference_data;
+ALTER TABLE public.keyword_most_frequent_word SET SCHEMA reference_data;
+ALTER TABLE public.language_proficiency SET SCHEMA reference_data;
+ALTER TABLE public.languages SET SCHEMA reference_data;
+ALTER TABLE public.locations SET SCHEMA reference_data;
+ALTER TABLE public.marital_status SET SCHEMA reference_data;
+ALTER TABLE public.non_medical_qual_type SET SCHEMA reference_data;
+ALTER TABLE public.non_medical_qual SET SCHEMA reference_data;
+ALTER TABLE public.organisation_types SET SCHEMA reference_data;
+ALTER TABLE public.pqr_ahp_detail SET SCHEMA reference_data;
+ALTER TABLE public.pqr_detail SET SCHEMA reference_data;
+ALTER TABLE public.pqr_header SET SCHEMA reference_data;
+ALTER TABLE public.qualification_classification SET SCHEMA reference_data;
+ALTER TABLE public.qualifications SET SCHEMA reference_data;
+ALTER TABLE public.reason_types SET SCHEMA reference_data;
+ALTER TABLE public.reasons SET SCHEMA reference_data;
+ALTER TABLE public.recruitment_types SET SCHEMA reference_data;
+ALTER TABLE public.region_countries SET SCHEMA reference_data;
+ALTER TABLE public.regions SET SCHEMA reference_data;
+ALTER TABLE public.role_types SET SCHEMA reference_data;
+ALTER TABLE public.skill_types SET SCHEMA reference_data;
+ALTER TABLE public.skills SET SCHEMA reference_data;
+ALTER TABLE public.special_interest SET SCHEMA reference_data;
+-- ALTER TABLE public.speciality_department SET SCHEMA reference_data;
+ALTER TABLE public.speciality_lookup SET SCHEMA reference_data;
+ALTER TABLE public.speciality_sub_speciality_self_reference_types SET SCHEMA reference_data;
+ALTER TABLE public.speciality_sub_speciality_self_references SET SCHEMA reference_data;
+ALTER TABLE public.speciality_types SET SCHEMA reference_data;
+ALTER TABLE public.speciality SET SCHEMA reference_data;
+ALTER TABLE public.status_types SET SCHEMA reference_data;
+ALTER TABLE public.status SET SCHEMA reference_data;
+ALTER TABLE public.sub_speciality SET SCHEMA reference_data;
+ALTER TABLE public.tabs SET SCHEMA reference_data;
+ALTER TABLE public.team_levels SET SCHEMA reference_data;
+ALTER TABLE public.titles SET SCHEMA reference_data;
