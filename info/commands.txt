@@ -15,7 +15,7 @@ use cascade when deleting the tables.
 
 
 psql -U username -p 5432 -h 10.10.10.1 -d database < db.dump
-psql -U postgres -w postgres -p 5432 -h localhost -d app < ref_data_2021_07_30_13_23_28.sql
+psql -U postgres -p 5432 -h localhost -d app < reference_data_tables_backup.sql
 
 pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname my-destination-database /tmp/db.dump
 pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname postgresql://postgres:postgres@localhost/app ref_data.sql
@@ -34,11 +34,6 @@ psql -U postgres -p 5432 -h localhost -d app < reference_data_1.sql
 pg_restore ${dumpfile} | \
     sed -e "s/OWNER TO ${source_owner}/OWNER TO ${target_owner}/" \
         -e "s/${source_owner}/${target_schema}/" | \
-       psql -h ${pgserver} -d ${dbname} -U ${pguser}    
-
-
-pg_restore app_data_export.sql | \
-    sed -e "s/${source_owner}/${target_schema}/" | \
        psql -h ${pgserver} -d ${dbname} -U ${pguser}    
 
 
