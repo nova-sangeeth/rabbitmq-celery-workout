@@ -1,4 +1,5 @@
 import json
+import unicodedata
 
 # TABLE_NAME = "tab"
 
@@ -20,7 +21,7 @@ def json_to_inserts(table_name, jsondata):
                 valuelist += ", "
             firstPair = False
             keylist += key
-            if type(value) in (str, unicode):
+            if type(value) in (str, unicodedata):
                 valuelist += "'" + value + "'"
             else:
                 valuelist += str(value)
