@@ -6,43 +6,16 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-manag
 # for RabbitMQ 3.9-rc.1
 docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 -e RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbit loopback_users "none"' rabbitmq:3.9-rc-management
 
-pg_dump postgresql://postgres:postgres@db/app --data-only --exclude-table-data=ab_* -t public.action_types -t public.actions -t public.benefit_types -t public.candidate_levels -t public.candidate_types -t public.contact_types -t public.country_info -t public.currencies -t public.customer_type -t public.customer_user_types -t public.display_types -t public.display_data -t public.districts -t public.document_ext -t public.document_owner -t public.document_types -t public.document_type_ext -t public.gender -t public.issue_authorities -t public.issue_authority_candidate_type -t public.issue_authority_qual -t public.issue_authority_type -t public.job_candidate_process -t public.job_candidate_process_action -t public.job_candidate_process_actions -t public.language_proficiency -t public.languages -t public.locations -t public.marital_status -t public.non_medical_qual_type -t public.non_medical_qual -t public.organisation_types -t public.pqr_header -t public.pqr_detail -t public.pqr_ahp_detail -t public.qualification_classification -t public.qualifications -t public.reason_types -t public.reasons -t public.recruitment_types -t public.region_countries -t public.regions -t public.role_types -t public.skill_types -t public.skills -t public.special_interest -t public.speciality -t public.sub_speciality -t public.speciality_types -t public.speciality_sub_speciality_self_reference_types -t public.speciality_sub_speciality_self_references -t public.status -t public.status_types -t public.speciality_lookup -t public.keyword_most_frequent_word -t public.tabs -t public.team_levels -t public.titles -t public.filters -t public.entities -t public.departments -t public.divergents -t public.customer_admin_types -t public.job_detail_type -t public.job_types > app_reference_data_export.sql
-
-
-
-use cascade when deleting the tables.
-
-
-
-psql -U username -p 5432 -h 10.10.10.1 -d database < db.dump
 psql -U postgres -p 5432 -h localhost -d app < reference_data_tables_backup.sql
 
 pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname my-destination-database /tmp/db.dump
-pg_restore --verbose --clean --no-acl --no-owner --host localhost --dbname postgresql://postgres:postgres@localhost/app ref_data.sql
 
 pg_dump postgresql://postgres:postgres@localhost/app --data-only  --table=public.candidate_types --column-inserts > testing-inserts.sql
 
-
-TRUNCATE TABLE [database_name.][schema_name.]table_name;
 pg_dump --column-inserts --data-only --table=<table> <database>
 pg_dump postgresql://postgres:postgres@localhost/app --data-only  --table=public.candidate_types --column-inserts > testing-inserts.sql
 
 psql -U postgres -p 5432 -h localhost -d app < reference_data_1.sql      
-
-
-
-pg_restore ${dumpfile} | \
-    sed -e "s/OWNER TO ${source_owner}/OWNER TO ${target_owner}/" \
-        -e "s/${source_owner}/${target_schema}/" | \
-       psql -h ${pgserver} -d ${dbname} -U ${pguser}    
-
-
-
-
-cat REFERENCE_DATA.sql|sed 's/^INSERT INTO/REPLACE INTO/'|mysql -u root -p database_name
-
-
-cat REFERENCE_DATA.sql| sed 's/^INSERT INTO/REPLACE INTO/'|psql -U postgres --disable-triggers -p 5432 -h localhost -d app      
 
 
 subprocess.call(['psql --username=openerp --dbname=sf_template --no-password --command="select pg_terminate_backend(procpid) from pg_stat_activity where datname = \'sf_template\' and procpid <> pg_backend_pid()"'], env={'PGPASSWORD': 'mypassword'})
