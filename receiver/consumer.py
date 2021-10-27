@@ -2,9 +2,18 @@ import pika
 import json
 import datetime
 
-from db_utils.db_backup_methods import  backup_postgres_db
+# from db_utils.db_backup_methods import  backup_postgres_db
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('dev.screel.in'))
+
+
+credentials = pika.PlainCredentials('tester_1', 'tester')
+# parameters = pika.ConnectionParameters('139.59.92.85',
+parameters = pika.ConnectionParameters('40.123.213.154',
+# parameters = pika.ConnectionParameters('40.123.215.82',
+                                   5671,
+                                   '/',
+                                   credentials)
+connection = pika.BlockingConnection(parameters)
 # For local testing only
 # connection = pika.Blockingconnection(pika.ConnectionParameters('localhost'))
 
@@ -16,11 +25,11 @@ queue = channel.queue_declare('testing_q')
 queue_name = queue.method.queue
 
 
-channel.queue_bind(
-    exchange='testing_exchange',
-    queue=queue_name,
-    routing_key='testing_information.age'
-)
+# channel.queue_bind(
+#     exchange='testing_exchange',
+#     queue=queue_name,
+#     routing_key='testing_information.age'
+# )
 
 
 
@@ -52,7 +61,7 @@ channel.start_consuming()
 
 
 def rabbit_start():
-    connection = pika.BlockingConnection(pika.ConnectionParameters('dev.screel.in'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('tfdev.screel.in'))
     channel = connection.channel()
     queue = channel.queue_declare('testing_q')
     queue_name = queue.method.queue
