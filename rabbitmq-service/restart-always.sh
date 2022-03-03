@@ -1,0 +1,1 @@
+docker run --rm -d --name rabbitmq-service  -p 15671:15671/tcp -p 15672:15672/tcp -p 15675:15675/tcp -p 15676:15676/tcp -p 15691:15691/tcp -p 15692:15692/tcp -p 1883:1883/tcp -p 25672:25672/tcp -p 4369:4369/tcp -p 5671:5671/tcp -p 5672:5672/tcp -p 8883:8883/tcp -v /var/run/docker.sock:/var/run/docker.sock root:latest
